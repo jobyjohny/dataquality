@@ -1,0 +1,28 @@
+#Scala code
+
+import org.apache.spark.sql.SQLContext
+import java.util.HashMap
+val sqlContext = new org.apache.spark.sql.hive.HiveContext(sc)
+val df2 = sqlContext.sql("SELECT case_key,case_identifier from casemanager.cases")
+df2.collect().foreach(println)
+
+Hive Code
+
+create database casemanager;
+
+use casemanager;
+drop table cases;
+create table cases(
+  `case_key` string,
+  `case_identifier` string,
+  `case_description` string,
+  `priority` string,
+  `case_narrative` string,
+  `icro_number` string,
+  `number_of_alerts` string,
+  `oldest_alert_date` string,
+  `sar_sensitive` string
+);
+
+insert into table cases values('1234567','C2017031234567','Key Bank','1','Key Bank is associated with multiple clients acorrs the world','123','2','2017-03-11','Y');;
+insert into table cases values('1234568','C2017031234568','Harry Bank','1','Harry Bank is associated with multiple clients acorrs the world','124','1','2017-03-10','Y');
